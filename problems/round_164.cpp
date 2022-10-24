@@ -18,32 +18,27 @@ void fast()
     cin.tie(0);
     cout.sync_with_stdio(0);
 }
-
 int main()
 {
     fast();
 
-    string str;
-    cin >> str;
-
-    int upper = 0, lower = 0;
-
-    for (char x : str)
-        if (x < 'a')
-            upper++;
-        else
-            lower++;
-
-    if (upper > lower)
+    int size;
+    cin >> size;
+    int *hosts = new int[size];
+    map<int, int> guests;
+    int guest;
+    for (size_t i = 0; i < size; i++)
     {
-        for (char &x : str)
-            if (x >= 'a')
-                x -= 32;
+        cin >> hosts[i] >> guest;
+        guests[guest]++;
     }
-    else
-        for (char &x : str)
-            if (x <= 'a')
-                x += 32;
 
-    cout << str;
+    int count = 0;
+
+    for (size_t i = 0; i < size; i++)
+    {
+        count += guests[hosts[i]];
+    }
+
+    cout << count;
 }
