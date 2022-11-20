@@ -25,18 +25,25 @@ int main()
     mino();
     int count;
     cin >> count;
-    set<char> letters;
-    char chr;
+    int totalCost = 0;
+    int *coins = new int[count];
     for (size_t i = 0; i < count; i++)
     {
-        cin >> chr;
-        if (chr < 'a')
-            chr += 32;
-        letters.insert(chr);
+        cin >> coins[i];
+        totalCost += coins[i];
     }
 
-    if ((int)letters.size() < 26)
-        cout << "NO";
-    else
-        cout << "YES";
+    sort(coins, coins + count);
+
+    int coinsCount = 0, myCost = 0;
+    for (size_t i = count - 1; i >= 0; i--)
+    {
+        totalCost -= coins[i];
+        myCost += coins[i];
+        coinsCount++;
+        if (myCost > totalCost)
+            break;
+    }
+
+    cout << coinsCount;
 }
