@@ -72,6 +72,8 @@ int main()
 
         count += subtractionGroup[x - y];
         subtractionGroup[x - y]++;
+        //test
+        //test
     }
 
     cout << count;
